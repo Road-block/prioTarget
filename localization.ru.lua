@@ -18,9 +18,11 @@ L["Menu_Loaders_Value"]                                    = "Загрузчик
 
 L["Minimap_Click"]                                         = "|cffFF6600Кликните|r чтобы отобразить/скрыть кнопку prioTarget"
 L["Minimap_RightClick"]                                    = "|cffFF6600Кликните правой кнопкой|r чтобы открыть/закрыть окно настроек"
+L["Minimap_MiddleClick"]                                   = "|cffFF6600Middle Click|r to unload current list" -- needs translation
 
 L["CommandHelp_Button"]                                    = "          /ptarget but[ton] (показать/скрыть кнопку)"
 L["CommandHelp_Options"]                                   = "          /ptarget opt[ions] (открыть окно настроек)"
+L["CommandHelp_Clear"]                                     = "          /ptarget cl[ear] (unload the current prio list)" -- needs translation
 
 L["HelpText"] =
 [=[    Наведите курсор на кнопку prioTarget для отображения текущего загруженного списка целей. Нажатие на кнопку prioTarget или на назначенную ей клавишу выберет наивысшую допустимую цель в списке приоритетов.

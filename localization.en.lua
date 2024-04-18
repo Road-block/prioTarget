@@ -15,9 +15,11 @@ L["Menu_Loaders_Value"]                                    = "Loaders"
 
 L["Minimap_Click"]                                         = "|cffFF6600Click|r to toggle prioTarget button"
 L["Minimap_RightClick"]                                    = "|cffFF6600Right Click|r to toggle options"
+L["Minimap_MiddleClick"]                                   = "|cffFF6600Middle Click|r to unload current list"
 
 L["CommandHelp_Button"]                                    = "          /ptarget but[ton] (show/hide the button)"
 L["CommandHelp_Options"]                                   = "          /ptarget opt[ions] (show options)"
+L["CommandHelp_Clear"]                                     = "          /ptarget cl[ear] (unload the current prio list)"
 
 L["HelpText"] =
 [=[    Mouseover the prioTarget button to show the currently loaded target list. Clicking the prioTarget button or pressing its keybind will target the highest valid target on the List.

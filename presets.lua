@@ -13,7 +13,7 @@ Cata = wowtoc > 40000 and wowtoc < 50000
 Wrath = WOW_PROJECT_ID == WOW_PROJECT_WRATH_CLASSIC and (not (Cata or MoP))
 Mainline = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 
-D.Presets = { ["!Clear"] = {} }
+D.Presets = { [D._unload] = {} }
 
 if GetLocale() == "enUS" then
 

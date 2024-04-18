@@ -5,7 +5,7 @@ local Fn, D = private.functions,private.data
 Fn.GUI, Fn.UTILS, Fn.API = {},{},{}
 
 local L = PriorityTarget_Localization
-
+D._unload = CreateAtlasMarkup("common-icon-rotateleft",18,18,0,-2)
 D.Presets,D.PresetLoaders,D.PresetLinks,D.Tooltip = {},{},{},{}
 
 D.Tree = {
@@ -122,6 +122,8 @@ events.PLAYER_LOGIN = function()
       OnClick = function(self, mbutton)
         if mbutton == "RightButton" then
           Fn.OptionsGUI()
+        elseif (mbutton == "MiddleButton") or IsControlKeyDown() then
+          Fn.unloadList()
         else
           Fn.ToggleButton()
         end
@@ -131,6 +133,7 @@ events.PLAYER_LOGIN = function()
         GameTooltip:SetText(label,1,1,1)
         GameTooltip:AddLine(L["Minimap_Click"])
         GameTooltip:AddLine(L["Minimap_RightClick"])
+        GameTooltip:AddLine(L["Minimap_MiddleClick"])
         GameTooltip:Show()
       end,
       OnLeave = function(self)
@@ -225,6 +228,13 @@ Fn.SVtoGUIList = function()
     tinsert(gui_lists,{value=key,text=key})
   end
 end
+Fn.unloadList = function()
+  DB.Selected = D._unload
+  events.CombatCheck(Fn.SetMacro)
+  if D.OptionsFrame and D.OptionsFrame.Tree then
+    D.OptionsFrame.Tree:SelectByValue(L["Menu_Lists_Value"])
+  end
+end
 Fn.CheckForLoad = function(loaderType)
   if not DBPC.AutoLoad then return end
   if loaderType == "npc" then
@@ -247,7 +257,13 @@ Fn.CheckForLoad = function(loaderType)
   elseif loaderType == "loc" then
     if WorldMapFrame:IsVisible() then return end
     local mapID,mapname = Fn.GetMapData()
-    local pX, pY = C_Map.GetPlayerMapPosition(mapID,"player"):GetXY()
+    local posData = mapID and C_Map.GetPlayerMapPosition(mapID,"player") or nil
+    local pX, pY
+    if posData then
+      pX,pY = posData:GetXY()
+    else
+      px,pY = 0, 0
+    end
     if not pX then pX,pY = 0,0 end
     pX, pY = pX*100, pY*100
     for loader,listname in pairs(DBPC.Linked) do
@@ -452,6 +468,8 @@ Fn.Slasher = function(cmd)
   if cmdl == "button" or cmdl == "but" then
     -- show/hide button (ooc only)
     Fn.ToggleButton()
+  elseif cmdl == "clear" or cmdl == "cl" then
+    Fn.unloadList()
   elseif cmdl == "options" or cmdl == "opt" then
     -- create (ooc to avoid 'script ran too long') or open options
     Fn.OptionsGUI()
@@ -459,6 +477,7 @@ Fn.Slasher = function(cmd)
     -- help
     print(label)
     print(L["CommandHelp_Button"])
+    print(L["CommandHelp_Clear"])
     print(L["CommandHelp_Options"])
   end
 end
