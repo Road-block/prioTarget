@@ -114,6 +114,7 @@ events.PLAYER_LOGIN = function()
   SLASH_PRIOTARGET2 = "/priotarget"
   events.CombatCheck(Fn.theButton)
   ACM.RegisterComm(Fn,ADDON,"OnListReceived")
+  Fn.SetAutoLoad(not not DBPC.AutoLoad)
   if LDB then
     D.Broker = LDB:NewDataObject(ADDON, {
       type = "launcher",
@@ -1840,7 +1841,7 @@ Fn.PositionLoad = function()
 end
 Fn.GetMacroParts = function()
   local preMacro, targetMacro, postMacro = "", "", ""
-  local targetCommand = DB.Exact and "/targetexact" or "/targetenemy"
+  local targetCommand = DB.Exact and "/targetexact" or "/target"
 
   if not DB.SafeTargeting then
     preMacro = "/cleartarget\n"
