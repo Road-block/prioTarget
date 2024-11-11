@@ -185,3 +185,4 @@ L["Socretar_the_Eternal"]                                  = "Socretar the Etern
 
 L["Presets_Loaded"]                                        = "Loaded presets (lists/loaders/links): %d/%d/%d."
 L["List_Sent"]                                             = "List \"%s\" has been sent to your group."
+L["MacroLen_Warning"]                                      = "Macro exceeds %d by %d chars, might malfunction."

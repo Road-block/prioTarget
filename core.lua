@@ -5,6 +5,16 @@ local Fn, D = private.functions,private.data
 Fn.GUI, Fn.UTILS, Fn.API = {},{},{}
 
 local L = PriorityTarget_Localization
+local EasyMenu = function(...)
+  if _G.EasyMenu then
+    return _G.EasyMenu(...)
+  else
+    local LibEasyMenu = LibStub:GetLibrary("LibEasyMenu",true)
+    if LibEasyMenu then
+      return LibEasyMenu:EasyMenu(...)
+    end
+  end
+end
 D._unload = CreateAtlasMarkup("common-icon-rotateleft",18,18,0,-2)
 D.Presets,D.PresetLoaders,D.PresetLinks,D.Tooltip = {},{},{},{}
 
@@ -1841,7 +1851,7 @@ Fn.PositionLoad = function()
 end
 Fn.GetMacroParts = function()
   local preMacro, targetMacro, postMacro = "", "", ""
-  local targetCommand = DB.Exact and "/targetexact" or "/target"
+  local targetCommand = DB.Exact and "/targetexact" or "/tar"
 
   if not DB.SafeTargeting then
     preMacro = "/cleartarget\n"
@@ -1849,7 +1859,7 @@ Fn.GetMacroParts = function()
   else
     preMacro = "/focus [@target,harm,nodead]\n/cleartarget\n"
     targetMacro = targetCommand .. " %s\n/stopmacro [nodead,harm]\n/cleartarget [dead][noharm]"
-    postMacro = "\n/target [@focus,harm,nodead]\n/focus [@none]"
+    postMacro = "\n/tar [@focus,harm,nodead]\n/focus [@none]"
   end
 
   return preMacro, targetMacro, postMacro
@@ -1869,6 +1879,10 @@ Fn.SetMacro = function()
 
     if macrotext ~= "" then
       macrotext = format("%s%s%s",preMacro,macrotext,postMacro)
+      local macroLen = strlenutf8(macrotext)
+      if macroLen > 255 then
+        Fn.PrintMessage(format(L["MacroLen_Warning"],255,macroLen-255))
+      end
       theButton:SetAttribute("type","macro")
       theButton:SetAttribute("macrotext",macrotext)
       theButton.icon:SetDesaturated(nil)

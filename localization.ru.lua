@@ -1,4 +1,4 @@
-﻿if GetLocale() ~= "ruRU" then
+if GetLocale() ~= "ruRU" then
     return
 end
 
@@ -189,3 +189,4 @@ L["Socretar_the_Eternal"]                                  = "Сокретар �
 
 L["Presets_Loaded"]                                        = "Загружены преднастройки (списки/загрузчики/связки): %d/%d/%d."
 L["List_Sent"]                                             = "Список \"%s\" был отправлен вашей группе."
+L["MacroLen_Warning"]                                      = "Macro exceeds %d by %d chars, might malfunction." -- needs translation
