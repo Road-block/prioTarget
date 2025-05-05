@@ -1,4 +1,4 @@
-## Interface: 40402
+## Interface: 50500
 ## Title: Priority Target
 ## Notes: Priority target list assistant.
 ## Version: 1.4.1

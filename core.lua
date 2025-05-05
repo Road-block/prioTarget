@@ -15,6 +15,13 @@ local EasyMenu = function(...)
     end
   end
 end
+local IsAddOnLoaded = function(...)
+  if _G.IsAddOnLoaded then
+    return _G.IsAddOnLoaded(...)
+  elseif C_AddOns and C_AddOns.IsAddOnLoaded then
+    return C_AddOns.IsAddOnLoaded(...)
+  end
+end
 D._unload = CreateAtlasMarkup("common-icon-rotateleft",18,18,0,-2)
 D.Presets,D.PresetLoaders,D.PresetLinks,D.Tooltip = {},{},{},{}
 
